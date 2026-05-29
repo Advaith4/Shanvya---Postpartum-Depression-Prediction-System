@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shanvya - Gentle Maternal Wellness & Care</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: hsl(355, 65%, 65%); /* Cozy Warm Rose/Terracotta */
+      --primary-light: hsl(355, 85%, 95%);
+      --secondary: hsl(152, 28%, 46%); /* Soothing Healing Sage */
+      --secondary-light: hsl(152, 45%, 94%);
+      --background: hsl(32, 45%, 98%); /* Creamy Ivory */
+      --card-bg: #FFFFFF;
+      --text: hsl(30, 20%, 25%); /* Cozy Charcoal */
+      --text-muted: hsl(30, 12%, 48%);
+      --accent: hsl(42, 65%, 63%); /* Cozy Soft Gold */
+      --border: rgba(226, 135, 130, 0.15);
+      --gradient-mother: linear-gradient(135deg, #FFF0F0 0%, #FFFBF5 50%, #F0F9F5 100%);
+      --shadow: 0 15px 35px rgba(226, 135, 130, 0.08);
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background-color: var(--background);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, .brand-font {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+    
+    /* Sticky Cozy Nav Bar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(250, 246, 242, 0.8);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+      box-shadow: 0 2px 20px rgba(44, 38, 33, 0.02);
+    }
+    
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .nav-brand:hover {
+      transform: scale(1.02);
+      opacity: 0.95;
+    }
+    
+    .nav-logo {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    
+    /* Modern Floating Glassmorphic Center Links */
+    .nav-links-wrapper {
+      background: rgba(255, 255, 255, 0.45);
+      border: 1px solid rgba(226, 135, 130, 0.18);
+      border-radius: 50px;
+      padding: 5px;
+      box-shadow: 0 10px 30px rgba(226, 135, 130, 0.04);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 5px;
+      list-style: none;
+      align-items: center;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 10px 22px;
+      border-radius: 50px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .nav-links a i {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      opacity: 0.7;
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+      background: rgba(226, 135, 130, 0.08);
+    }
+    
+    .nav-links a:hover i {
+      color: var(--primary);
+      opacity: 1;
+    }
+    
+    /* Elegant Glowing CTA button */
+    .nav-btn {
+      background: linear-gradient(135deg, var(--primary), hsl(355, 65%, 58%));
+      color: white;
+      padding: 12px 26px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: 0 6px 20px rgba(226, 135, 130, 0.22);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid transparent;
+    }
+    
+    .nav-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(226, 135, 130, 0.35);
+    }
+    
+    .nav-btn i {
+      transition: var(--transition);
+    }
+    
+    .nav-btn:hover i {
+      transform: rotate(15deg) scale(1.1);
+    }
+    
+    /* Cozy Hero Section with Organic Blobs */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 750px;
+      display: flex;
+      align-items: center;
+      background: radial-gradient(circle at 80% 20%, hsla(355, 75%, 92%, 0.8), transparent 50%),
+                  radial-gradient(circle at 10% 80%, hsla(152, 45%, 92%, 0.8), transparent 50%),
+                  var(--background);
+      padding: 0 8%;
+      margin-top: 60px;
+      overflow: hidden;
+    }
+    
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+      width: 100%;
+    }
+    
+    .hero-content {
+      max-width: 650px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      border: 1px solid rgba(226, 135, 130, 0.25);
+    }
+    
+    .hero h1 {
+      font-size: 4.2rem;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    
+    .hero h1 span {
+      color: var(--primary);
+      font-style: italic;
+      font-weight: 400;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+    
+    .hero-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .hero-img-blob {
+      position: absolute;
+      width: 90%;
+      height: 90%;
+      background: url('/static/images/shanvya_hero.png') no-repeat center center/cover;
+      border-radius: 40% 60% 60% 40% / 50% 40% 60% 50%;
+      box-shadow: 0 20px 45px rgba(226, 135, 130, 0.15);
+      border: 6px solid #FFF;
+      animation: blobAnimate 12s ease-in-out infinite alternate;
+    }
+    
+    @keyframes blobAnimate {
+      0% { border-radius: 40% 60% 60% 40% / 50% 40% 60% 50%; }
+      50% { border-radius: 60% 40% 50% 50% / 40% 60% 50% 60%; }
+      100% { border-radius: 50% 50% 60% 40% / 60% 40% 60% 40%; }
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    
+    .scroll-indicator i {
+      animation: bounce 2s infinite;
+      color: var(--primary);
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(8px); }
+      60% { transform: translateY(4px); }
+    }
+    
+    /* Interactive Educational Section (Tabs Interface) */
+    .tabs-section {
+      padding: 120px 8%;
+      background: #FFF;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px;
+    }
+    
+    .section-header h2 {
+      font-size: 2.8rem;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    
+    .section-header p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+    }
+    
+    .tabs-nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 50px;
+      background: var(--background);
+      padding: 8px;
+      border-radius: 50px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid var(--border);
+    }
+    
+    .tab-trigger {
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 10px 24px;
+      border-radius: 30px;
+      transition: var(--transition);
+    }
+    
+    .tab-trigger.active {
+      color: var(--primary);
+      background: #FFF;
+      box-shadow: 0 6px 15px rgba(226, 135, 130, 0.08);
+    }
+    
+    .tab-content {
+      display: none;
+      animation: tabFadeIn 0.5s ease-out forwards;
+    }
+    
+    .tab-content.active {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+    
+    @keyframes tabFadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .tab-text h3 {
+      font-size: 2.4rem;
+      line-height: 1.25;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    
+    .tab-text p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 25px;
+    }
+    
+    .tab-visual-card {
+      background: var(--primary-light);
+      border-radius: 28px;
+      padding: 40px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .tab-visual-card::after {
+      content: '';
+      position: absolute;
+      top: -50px; right: -50px;
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      background: rgba(226, 135, 130, 0.15);
+    }
+    
+    /* Stats & Global Dashboard Section */
+    .dashboard-section {
+      padding: 120px 8%;
+      background: var(--gradient-mother);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .stats-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    
+    .stats-graphic-container {
+      position: relative;
+      height: 480px;
+      border-radius: 36px;
+      overflow: hidden;
+      box-shadow: 0 20px 45px rgba(226, 135, 130, 0.15);
+      border: 6px solid #FFF;
+      background: url('/static/images/shanvya_support.png') no-repeat center center/cover;
+    }
+    
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+    
+    .dashboard-card {
+      background: #FFF;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .dashboard-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+    }
+    
+    .db-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    
+    .db-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .db-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    
+    /* Clinical Methodology Section */
+    .clinical-section {
+      padding: 120px 8%;
+      background: #FFF;
+      z-index: 2;
+      position: relative;
+    }
+    
+    .clinical-card {
+      background: linear-gradient(135deg, #FFFBF9 0%, #FFF0EE 100%);
+      border: 1px solid var(--border);
+      border-radius: 36px;
+      padding: 60px;
+      box-shadow: var(--shadow);
+    }
+    
+    .clinical-layout {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 50px;
+      align-items: center;
+    }
+    
+    .clinical-visual {
+      background: var(--primary);
+      color: #FFF;
+      padding: 45px;
+      border-radius: 28px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(226, 135, 130, 0.2);
+    }
+    
+    .clinical-visual i {
+      font-size: 4rem;
+      color: #FFF;
+      margin-bottom: 20px;
+    }
+    
+    .clinical-visual h3 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    
+    .clinical-visual p {
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+    
+    .clinical-info h2 {
+      font-size: 2.8rem;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    
+    .clinical-info p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+    
+    .clinical-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    .clinical-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+    
+    .clinical-item i {
+      color: var(--secondary);
+      font-size: 1.3rem;
+    }
+    
+    /* Immersive Maternal CTA Section */
+    .cta-pathway {
+      padding: 130px 8%;
+      background: radial-gradient(circle at center, hsla(355, 75%, 93%, 0.5) 0%, transparent 70%), var(--background);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .pathway-card {
+      max-width: 850px;
+      margin: 0 auto;
+      background: #FFF;
+      border: 1px solid var(--border);
+      border-radius: 36px;
+      padding: 70px 40px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .pathway-card::before {
+      content: '';
+      position: absolute;
+      bottom: -100px; right: -100px;
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      opacity: 0.6;
+    }
+    
+    .pathway-card::after {
+      content: '';
+      position: absolute;
+      top: -100px; left: -100px;
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      background: var(--secondary-light);
+      opacity: 0.6;
+    }
+    
+    .pathway-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      margin: 0 auto 24px;
+    }
+    
+    .pathway-card h2 {
+      font-size: 3rem;
+      line-height: 1.25;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .pathway-card p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 40px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Glowing Cozy Button */
+    .gentle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, var(--primary), hsl(355, 65%, 58%));
+      color: white;
+      padding: 18px 45px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 1.25rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(226, 135, 130, 0.4);
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .gentle-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 15px 30px rgba(226, 135, 130, 0.5);
+    }
+    
+    .gentle-btn i {
+      transition: var(--transition);
+    }
+    
+    .gentle-btn:hover i {
+      transform: translateX(6px);
+    }
+    
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 50px 8%;
+      text-align: center;
+      background: #FFF;
+      color: var(--text-muted);
+      z-index: 2;
+      position: relative;
+    }
+    
+    footer .logo {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1.7rem;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    
+    /* Responsive styling */
+    @media (max-width: 992px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-content {
+        max-width: 100%;
+      }
+      .hero h1 {
+        font-size: 3rem;
+      }
+      .hero-image-wrapper {
+        height: 380px;
+      }
+      .tab-content.active {
+        grid-template-columns: 1fr;
+      }
+      .stats-layout {
+        grid-template-columns: 1fr;
+      }
+      .clinical-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Cozy Navbar -->
+  <nav>
+    <a href="#" class="nav-brand">
+      <i class="fa-solid fa-spa" style="margin-right: 10px; font-size: 1.8rem; color: var(--primary);"></i>
+      <span class="nav-logo brand-font">Shanvya</span>
+    </a>
+    <div class="nav-links-wrapper">
+      <ul class="nav-links">
+        <li><a href="#explore"><i class="fa-solid fa-leaf"></i> Explore</a></li>
+        <li><a href="#impact"><i class="fa-solid fa-globe"></i> Global Insights</a></li>
+        <li><a href="#clinical"><i class="fa-solid fa-stethoscope"></i> Clinical Standard</a></li>
+      </ul>
+    </div>
+    <a href="/test" class="nav-btn"><i class="fa-solid fa-wand-magic-sparkles"></i> Gentle Check-in</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content" data-aos="fade-right" data-aos-duration="1200">
+        <div class="hero-badge">
+          <i class="fa-solid fa-heart"></i> Cozy Safe Haven for New Mothers
+        </div>
+        <h1>Caring for the One Who <span>Cares.</span></h1>
+        <p>A gentle, private, and clinically validated digital platform built to screen for postpartum distress and guide you lovingly toward healing.</p>
+        <div class="hero-ctas">
+          <a href="#pathway" class="gentle-btn">
+            Begin Quiet Assessment <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="hero-image-wrapper" data-aos="zoom-in" data-aos-duration="1500">
+        <div class="hero-img-blob"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Educational Tabs (Developer Detail) -->
+  <section class="tabs-section" id="explore">
+    <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
+      <h2>Understanding Postpartum Depression</h2>
+      <p>PPD is a treatable clinical condition, not a personal flaw. Explore critical educational insights below.</p>
+    </div>
+    
+    <div class="tabs-nav" data-aos="fade-up" data-aos-duration="1000">
+      <button class="tab-trigger active" onclick="switchTab(event, 'ppd-tab')">What is PPD?</button>
+      <button class="tab-trigger" onclick="switchTab(event, 'effects-tab')">The Hidden Symptoms</button>
+      <button class="tab-trigger" onclick="switchTab(event, 'importance-tab')">Why Care Matters</button>
+    </div>
+    
+    <!-- Tab 1 -->
+    <div class="tab-content active" id="ppd-tab">
+      <div class="tab-text">
+        <h3>A complex medical transition, not a personal weakness.</h3>
+        <p>Postpartum depression (PPD) is a serious, highly complex mental health condition that arises following childbirth. It is triggered by rapid, severe drops in estrogen and progesterone, coupled with extreme sleep deprivation and environmental adjustments.</p>
+      </div>
+      <div class="tab-visual-card">
+        <h3 class="brand-font" style="font-size: 1.7rem; margin-bottom: 12px; color: var(--primary)">Key Indicator</h3>
+        <p>Unlike the temporary "baby blues" which fade in two weeks, PPD is persistent, deeply affecting daily operations, physical energy, and maternal safety.</p>
+      </div>
+    </div>
+    
+    <!-- Tab 2 -->
+    <div class="tab-content" id="effects-tab">
+      <div class="tab-text">
+        <h3>Understanding how PPD manifests.</h3>
+        <p>Symptoms are often masked by the fatigue of new parenthood. They include a profound sense of emptiness, persistent crying, severe anxiety, and extreme feelings of guilt or inadequacy that inhibit connecting with the baby.</p>
+      </div>
+      <div class="tab-visual-card">
+        <h3 class="brand-font" style="font-size: 1.7rem; margin-bottom: 12px; color: var(--primary)">Clinical Scope</h3>
+        <p>PPD symptoms can start within the first few weeks after birth or build up gradually, sometimes appearing up to a year later.</p>
+      </div>
+    </div>
+    
+    <!-- Tab 3 -->
+    <div class="tab-content" id="importance-tab">
+      <div class="tab-text">
+        <h3>Why screening and timely care save lives.</h3>
+        <p>If left untreated, postpartum depression can lead to severe emotional distress for the mother, impact marital bonding, and hinder the newborn's early cognitive and emotional development.</p>
+      </div>
+      <div class="tab-visual-card">
+        <h3 class="brand-font" style="font-size: 1.7rem; margin-bottom: 12px; color: var(--primary)">Recovery Path</h3>
+        <p>Early identification through diagnostic questionnaires leads directly to support plans, therapy, and medical support—ensuring a 100% path back to wellness.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cozy Dashboard Section -->
+  <section class="dashboard-section" id="impact">
+    <div class="stats-layout">
+      <div class="stats-graphic-container" data-aos="fade-right" data-aos-duration="1200"></div>
+      <div class="stats-content" data-aos="fade-left" data-aos-duration="1200">
+        <div class="section-header" style="text-align: left; margin-bottom: 30px; max-width: 100%">
+          <h2>Maternal Mental Health Insights</h2>
+          <p>Postpartum depression represents a global crisis. These statistics emphasize why highly accessible, digital screening standardizations are so crucial.</p>
+        </div>
+        
+        <div class="dashboard-grid">
+          <div class="dashboard-card">
+            <div class="db-value">1 in 7</div>
+            <div class="db-title">New Mothers</div>
+            <div class="db-desc">Suffer clinically from postpartum depression worldwide.</div>
+          </div>
+          
+          <div class="dashboard-card">
+            <div class="db-value">15%</div>
+            <div class="db-title">Global Rate</div>
+            <div class="db-desc">Prevalence index across both high and low-income countries.</div>
+          </div>
+          
+          <div class="dashboard-card">
+            <div class="db-value">80%</div>
+            <div class="db-title">Undetected</div>
+            <div class="db-desc">Cases fail to be screened or treated due to social stigma.</div>
+          </div>
+          
+          <div class="dashboard-card">
+            <div class="db-value">100%</div>
+            <div class="db-title">Recoverable</div>
+            <div class="db-desc">PPD is fully manageable through early detection and care.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clinical Methodology -->
+  <section class="clinical-section" id="clinical">
+    <div class="clinical-card" data-aos="fade-up" data-aos-duration="1200">
+      <div class="clinical-layout">
+        <div class="clinical-visual">
+          <i class="fa-solid fa-stethoscope"></i>
+          <h3>Clinically Backed</h3>
+          <p>Edinburgh Postnatal Depression Scale</p>
+        </div>
+        <div class="clinical-info">
+          <h2>Grounded in World-Class Clinical Science</h2>
+          <p>Our assessment suite is fully based on the <strong>Edinburgh Postnatal Depression Scale (EPDS)</strong>, developed in 1987. It represents the medical gold-standard utilized by health systems, obstetricians, and pediatricians globally to identify clinical risk factors securely and sensitively.</p>
+          <div class="clinical-grid">
+            <div class="clinical-item"><i class="fa-solid fa-circle-check"></i> Sensitive & Private</div>
+            <div class="clinical-item"><i class="fa-solid fa-circle-check"></i> Medically Proven</div>
+            <div class="clinical-item"><i class="fa-solid fa-circle-check"></i> Emotionally Centered</div>
+            <div class="clinical-item"><i class="fa-solid fa-circle-check"></i> Standardized scoring</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cozy Pathway CTA -->
+  <section class="cta-pathway" id="pathway">
+    <div class="pathway-card" data-aos="zoom-in" data-aos-duration="1200">
+      <div class="pathway-icon">
+        <i class="fa-solid fa-spa"></i>
+      </div>
+      <h2>Self-Care Reflection Space</h2>
+      <p>Step away from the demands of the day for a brief 3-minute check-in. It is entirely anonymous, private, and powered by an advanced predictive model. A compassionate, warm AI counselor will be available instantly upon completion if you need immediate comfort.</p>
+      <a href="/test" class="gentle-btn">
+        Step into Your Healing Space <i class="fa-solid fa-wand-magic-sparkles"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="logo brand-font">Shanvya</div>
+    <p>&copy; 2026 Shanvya Maternal Wellness Systems. Cozy care for mothers.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ once: true });
+    
+    function switchTab(evt, tabId) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.remove('active'));
+      
+      const triggers = document.querySelectorAll('.tab-trigger');
+      triggers.forEach(trigger => trigger.classList.remove('active'));
+      
+      document.getElementById(tabId).classList.add('active');
+      evt.currentTarget.classList.add('active');
+    }
+  </script>
+</body>
+</html>
