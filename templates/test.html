@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shanvya - Gentle Wellness Check-in</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: hsl(355, 65%, 65%);
+      --primary-light: hsl(355, 85%, 95%);
+      --background: hsl(32, 45%, 98%);
+      --text: hsl(30, 20%, 25%);
+      --text-muted: hsl(30, 12%, 48%);
+      --border: rgba(226, 135, 130, 0.22);
+      --shadow: 0 20px 50px rgba(226, 135, 130, 0.08);
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background: linear-gradient(-45deg, #FFC6C2, #FFE4D3, #CBEFE2, #E8F5D5);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    
+    /* Dreamy Decorative Ambient Orbs */
+    .orb-1 {
+      position: absolute;
+      top: -10%; left: -10%;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      filter: blur(50px);
+      z-index: 0;
+      pointer-events: none;
+      animation: drift 20s infinite alternate;
+    }
+    
+    .orb-2 {
+      position: absolute;
+      bottom: -10%; right: -10%;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(226, 135, 130, 0.2);
+      filter: blur(50px);
+      z-index: 0;
+      pointer-events: none;
+      animation: drift 25s infinite alternate-reverse;
+    }
+    
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(40px, 40px) scale(1.1); }
+    }
+    
+    .nav-header {
+      margin-bottom: 25px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .brand-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      text-shadow: 0 2px 8px rgba(255, 255, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .wizard-card {
+      background: radial-gradient(circle at top left, #FFFBF9, #FFFFFF 70%);
+      border: 2px solid var(--border);
+      border-radius: 36px;
+      width: 100%;
+      max-width: 650px;
+      padding: 50px;
+      box-shadow: 0 25px 60px rgba(226, 135, 130, 0.12);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: rgba(226, 135, 130, 0.12);
+      border-radius: 10px;
+      margin-bottom: 45px;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), #FFB7B2);
+      width: 0%;
+      transition: var(--transition);
+      box-shadow: 0 2px 10px rgba(226, 135, 130, 0.2);
+    }
+    
+    .question-card {
+      display: none;
+    }
+    
+    .question-card.active {
+      display: block;
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .maternal-accent {
+      display: flex;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      animation: gentlePulse 2s infinite alternate;
+    }
+    
+    @keyframes gentlePulse {
+      from { transform: scale(1); opacity: 0.8; }
+      to { transform: scale(1.1); opacity: 1; }
+    }
+    
+    .q-number {
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    
+    .q-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      line-height: 1.35;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 35px;
+      font-style: italic;
+    }
+    
+    /* Cozy custom pillowy tactile options */
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    
+    .option-label {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 20px 26px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 1.1rem;
+      font-weight: 600;
+      position: relative;
+      background: #FFF;
+      box-shadow: 0 4px 10px rgba(226, 135, 130, 0.02);
+    }
+    
+    .option-label:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(226, 135, 130, 0.08);
+    }
+    
+    .option-label input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+    }
+    
+    .custom-radio {
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      margin-right: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      background: #FFF;
+    }
+    
+    .option-label input[type="radio"]:checked + .custom-radio {
+      border-color: var(--primary);
+      background: var(--primary);
+    }
+    
+    .option-label input[type="radio"]:checked + .custom-radio::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: #FFF;
+      border-radius: 50%;
+    }
+    
+    .option-label input[type="radio"]:checked ~ span {
+      color: var(--primary);
+    }
+    
+    .option-label.selected {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      box-shadow: 0 8px 25px rgba(226, 135, 130, 0.1);
+    }
+    
+    /* Cozy dynamic subtitles at bottom of wizard */
+    .wiz-subtitle {
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 35px;
+      font-style: italic;
+      font-weight: 500;
+      min-height: 25px;
+      transition: var(--transition);
+    }
+    
+    /* Navigation buttons */
+    .wizard-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid var(--border);
+      padding-top: 35px;
+    }
+    
+    .wiz-btn {
+      padding: 15px 34px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .wiz-btn-prev {
+      background: #FFF;
+      color: var(--text-muted);
+      border: 1.5px solid var(--border);
+    }
+    
+    .wiz-btn-prev:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+    
+    .wiz-btn-next {
+      background: var(--text);
+      color: white;
+      box-shadow: 0 4px 15px rgba(44, 38, 33, 0.15);
+    }
+    
+    .wiz-btn-next:hover {
+      background: var(--primary);
+      box-shadow: 0 8px 25px rgba(226, 135, 130, 0.35);
+      transform: translateY(-2px);
+    }
+    
+    .wiz-btn-submit {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 8px 25px rgba(226, 135, 130, 0.3);
+      display: none;
+    }
+    
+    .wiz-btn-submit:hover {
+      background: hsl(355, 65%, 58%);
+      transform: translateY(-2px);
+    }
+    
+    /* Result styling */
+    .result-container {
+      text-align: center;
+      padding: 20px 0;
+    }
+    
+    .result-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.5rem;
+      margin: 0 auto 24px;
+      box-shadow: 0 4px 15px rgba(226, 135, 130, 0.15);
+    }
+    
+    .result-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    
+    .result-text {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      margin-bottom: 35px;
+      line-height: 1.8;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .result-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--primary);
+      color: white;
+      padding: 18px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(226, 135, 130, 0.35);
+      transition: var(--transition);
+    }
+    
+    .result-action:hover {
+      background: hsl(355, 65%, 58%);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="orb-1"></div>
+  <div class="orb-2"></div>
+
+  <div class="nav-header">
+    <a href="/" class="brand-logo"><i class="fa-solid fa-spa" style="color: var(--primary);"></i> Shanvya</a>
+  </div>
+
+  <div class="wizard-card">
+    {% if prediction %}
+    <!-- Prediction Screen -->
+    <div class="result-container">
+      <div class="result-icon">
+        <i class="fa-solid fa-heart"></i>
+      </div>
+      <h2 class="result-heading">Assessment Completed</h2>
+      
+      {% if 'Positive' in prediction %}
+      <p class="result-text">Our prediction model suggests a high chance that you are experiencing postpartum distress. This is completely normal and treatable. We have arranged a private counseling space for you right now.</p>
+      <a href="/chat" class="result-action">Speak with our Counselor <i class="fa-solid fa-comments"></i></a>
+      {% else %}
+      <p class="result-text">Your responses indicate a lower likelihood of clinical postpartum depression at this time. However, remember to always prioritize self-care and reach out if you feel overwhelmed.</p>
+      <a href="/" class="result-action">Back to Home <i class="fa-solid fa-home"></i></a>
+      {% endif %}
+    </div>
+    {% else %}
+    <!-- Wizard Form -->
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <form id="wizardForm" action="/test" method="post">
+      {% for q in questions %}
+      <div class="question-card" id="qCard-{{ loop.index0 }}">
+        <div class="maternal-accent"><i class="fa-solid fa-seedling"></i></div>
+        <div class="q-number">Step {{ loop.index }} of 9</div>
+        <div class="q-text">{{ q }}</div>
+        
+        <div class="options-container">
+          <label class="option-label" onclick="selectOption(this)">
+            <input type="radio" name="q-{{ loop.index0 }}" value="Yes" required>
+            <span class="custom-radio"></span>
+            <span>Yes, most of the time</span>
+          </label>
+          
+          <label class="option-label" onclick="selectOption(this)">
+            <input type="radio" name="q-{{ loop.index0 }}" value="No">
+            <span class="custom-radio"></span>
+            <span>No, not at all</span>
+          </label>
+          
+          {% if 'Maybe' in q or 'Sometimes' in q %}
+          <label class="option-label" onclick="selectOption(this)">
+            <input type="radio" name="q-{{ loop.index0 }}" value="Maybe">
+            <span class="custom-radio"></span>
+            <span>Sometimes / Maybe</span>
+          </label>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+      
+      <div class="wiz-subtitle" id="wizSubtitle"></div>
+      
+      <div class="wizard-buttons">
+        <button type="button" class="wiz-btn wiz-btn-prev" id="prevBtn" onclick="navigateStep(-1)" disabled><i class="fa-solid fa-chevron-left"></i> Back</button>
+        <button type="button" class="wiz-btn wiz-btn-next" id="nextBtn" onclick="navigateStep(1)">Next <i class="fa-solid fa-chevron-right"></i></button>
+        <button type="submit" class="wiz-btn wiz-btn-submit" id="submitBtn">Submit Assessment <i class="fa-solid fa-circle-check"></i></button>
+      </div>
+    </form>
+    {% endif %}
+  </div>
+
+  <script>
+    let currentStep = 0;
+    const totalSteps = 9;
+    
+    const subtitles = [
+      "Take a soft, quiet breath. You are doing wonderfully, dear.",
+      "We are here with you. Every single feeling you have is fully valid.",
+      "Be gentle with your heart. Your honesty is the first step to healing.",
+      "You are never alone in this space. We are listening with deep care.",
+      "Maternal wellness is built on small, brave moments of reflection.",
+      "We are moving forward together, step by gentle step.",
+      "This quiet moment for yourself is a beautiful gift of love.",
+      "Almost there, sweet mother. You are doing so, so well.",
+      "Thank you for sharing your heart. Let us evaluate your wellness now."
+    ];
+    
+    function showStep(stepIndex) {
+      const cards = document.querySelectorAll('.question-card');
+      cards.forEach((card, index) => {
+        card.classList.toggle('active', index === stepIndex);
+      });
+      
+      // Update Buttons
+      document.getElementById('prevBtn').disabled = (stepIndex === 0);
+      if (stepIndex === totalSteps - 1) {
+        document.getElementById('nextBtn').style.display = 'none';
+        document.getElementById('submitBtn').style.display = 'inline-flex';
+      } else {
+        document.getElementById('nextBtn').style.display = 'inline-flex';
+        document.getElementById('submitBtn').style.display = 'none';
+      }
+      
+      // Update Progress Bar
+      const percentage = ((stepIndex) / (totalSteps - 1)) * 100;
+      document.getElementById('progressBar').style.width = percentage + '%';
+      
+      // Update cozy subtitle
+      document.getElementById('wizSubtitle').textContent = subtitles[stepIndex];
+    }
+    
+    function navigateStep(direction) {
+      if (direction === 1) {
+        const activeCard = document.querySelector('.question-card.active');
+        const checkedInput = activeCard.querySelector('input[type="radio"]:checked');
+        if (!checkedInput) {
+          alert("Please select an option to proceed.");
+          return;
+        }
+      }
+      
+      currentStep += direction;
+      showStep(currentStep);
+    }
+    
+    function selectOption(element) {
+      const options = element.parentElement.querySelectorAll('.option-label');
+      options.forEach(opt => opt.classList.remove('selected'));
+      
+      element.classList.add('selected');
+      const radio = element.querySelector('input[type="radio"]');
+      radio.checked = true;
+    }
+    
+    if (document.getElementById('qCard-0')) {
+      showStep(0);
+    }
+  </script>
+</body>
+</html>
