@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shanvya - Gentle Wellness Check-in</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% extends "base.html" %}
+{% block title %}Shanvya - Gentle Wellness Check-in{% endblock %}
+{% block extra_head %}
   <style>
     :root {
       --primary: hsl(355, 65%, 65%);
@@ -369,8 +364,8 @@
       transform: translateY(-2px);
     }
   </style>
-</head>
-<body>
+{% endblock %}
+{% block content %}
 
   <div class="orb-1"></div>
   <div class="orb-2"></div>
@@ -443,7 +438,8 @@
     </form>
     {% endif %}
   </div>
-
+{% endblock %}
+{% block scripts %}
   <script>
     let currentStep = 0;
     const totalSteps = 9;
@@ -511,5 +507,4 @@
       showStep(0);
     }
   </script>
-</body>
-</html>
+{% endblock %}

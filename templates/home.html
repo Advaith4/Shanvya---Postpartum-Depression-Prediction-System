@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shanvya - Gentle Maternal Wellness & Care</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% extends "base.html" %}
+{% block title %}Shanvya - Gentle Maternal Wellness & Care{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
   <style>
     :root {
       --primary: hsl(355, 65%, 65%); /* Cozy Warm Rose/Terracotta */
@@ -672,8 +667,8 @@
       }
     }
   </style>
-</head>
-<body>
+{% endblock %}
+{% block content %}
 
   <!-- Sticky Cozy Navbar -->
   <nav>
@@ -843,7 +838,8 @@
     <div class="logo brand-font">Shanvya</div>
     <p>&copy; 2026 Shanvya Maternal Wellness Systems. Cozy care for mothers.</p>
   </footer>
-
+{% endblock %}
+{% block scripts %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
     AOS.init({ once: true });
@@ -859,5 +855,4 @@
       evt.currentTarget.classList.add('active');
     }
   </script>
-</body>
-</html>
+{% endblock %}
