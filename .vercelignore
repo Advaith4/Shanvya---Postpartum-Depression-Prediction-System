@@ -1,0 +1,8 @@
+.env
+.env.*
+data/
+train_model.py
+*.log
+__pycache__/
+.pytest_cache/
+models/catboostmodel_balanced.joblib

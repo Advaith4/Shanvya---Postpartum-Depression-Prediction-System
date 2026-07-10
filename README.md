@@ -20,7 +20,7 @@ The platform is designed with a deeply comforting, "motherly" visual system:
 ## 🔬 Clinical Methodology & Machine Learning
 
 * **Methodology:** The screening questions are grounded in the **Edinburgh Postnatal Depression Scale (EPDS)**, a widely recognized diagnostic questionnaire developed in 1987.
-* **Prediction Model:** Utilizes a highly balanced **CatBoost Classifier** trained on Balanced Dataset Undersampling, achieving an **accuracy of over 96%** on clinical testing indicators.
+* **Prediction Model:** Utilizes a highly balanced **scikit-learn Random Forest classifier** trained on Balanced Dataset Undersampling, achieving an **accuracy of about 92%** on clinical testing indicators.
 * **Counseling Assistant:** Integrates the HuggingFace Inference API (`Mistral-7B-Instruct-v0.3`) to deliver private, highly empathetic, emotionally intelligent counselor responses, alongside immediate hotlines (AASRA, SNEHA).
 
 ---
@@ -45,7 +45,7 @@ To enable the AI counselor chatbot, set your HuggingFace token in your environme
 * **Linux/macOS:** `export HF_TOKEN="your_token_here"`
 
 ### 4. (Optional) Retrain the model
-The pre-trained model is already included as `catboostmodel_balanced.joblib`. If you wish to retrain it:
+The pre-trained model is already included as `ppd_model_balanced.joblib`. If you wish to retrain it:
 ```bash
 python train_model.py
 ```
@@ -65,8 +65,11 @@ Open your browser and navigate to **http://localhost:5001**.
 2. Select **Web Service** and choose **Python** environment.
 3. Configure the following:
    * **Build Command:** `pip install -r requirements.txt`
-   * **Start Command:** `gunicorn app:app`
+   * **Start Command:** `python app.py`
 4. Add an **Environment Variable**: `HF_TOKEN` = `your_huggingface_token`.
 
 ### Vercel
 This project includes a native `vercel.json` configuration file. Just link your GitHub repository to Vercel, add your `HF_TOKEN` environment variable, and hit deploy!
+
+
+

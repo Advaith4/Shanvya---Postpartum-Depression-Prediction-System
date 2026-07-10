@@ -1,12 +1,10 @@
 import os
 import pandas as pd
-import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.utils import resample
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.metrics import accuracy_score, classification_report
 import joblib
-from catboost import CatBoostClassifier
-import urllib.request
+from sklearn.ensemble import RandomForestClassifier
 
 def download_file_from_google_drive(id, destination):
     print(f"Downloading dataset to {destination}...")
@@ -82,17 +80,17 @@ def main():
     
     X_train, X_test, y_train, y_test = train_test_split(X_balanced, y_balanced, test_size=0.4, random_state=47)
     
-    print("Training CatBoost model...")
-    # Train CatBoost model
-    model = CatBoostClassifier(
-        iterations=1000,
-        depth=10,
-        learning_rate=0.05,
-        loss_function='Logloss',
-        verbose=100
+    print("Training Random Forest model...")
+    model = RandomForestClassifier(
+        n_estimators=200,
+        max_depth=12,
+        min_samples_leaf=2,
+        class_weight="balanced",
+        random_state=42,
+        n_jobs=1
     )
-    
     model.fit(X_train, y_train)
+    model.feature_names_ = list(X_train.columns)
     
     # Evaluate
     y_pred = model.predict(X_test)
@@ -100,8 +98,9 @@ def main():
     print("Classification Report:\n", classification_report(y_test, y_pred))
     
     # Save model
-    joblib.dump(model, 'models/catboostmodel_balanced.joblib')
-    print("Model saved as 'models/catboostmodel_balanced.joblib'")
+    joblib.dump(model, 'models/ppd_model_balanced.joblib')
+    print("Model saved as 'models/ppd_model_balanced.joblib'")
 
 if __name__ == "__main__":
     main()
+

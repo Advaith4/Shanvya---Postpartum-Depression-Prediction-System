@@ -14,7 +14,7 @@ CORS(app)
 
 # Attempt to load model
 try:
-    model = joblib.load("models/catboostmodel_balanced.joblib")
+    model = joblib.load("models/ppd_model_balanced.joblib")
     print("Model loaded successfully.")
 except FileNotFoundError:
     print("Model not found! Please run 'python train_model.py' first.")
@@ -163,3 +163,4 @@ Counselor:"""
 
 if __name__ == "__main__":
     app.run(port=5001, debug=True)
+
