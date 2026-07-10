@@ -650,7 +650,7 @@ footer .logo {
 }
 
 .nav-header {
-  margin-bottom: 25px;
+  margin-bottom: 18px;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -675,7 +675,7 @@ footer .logo {
   border-radius: 36px;
   width: 100%;
   max-width: 650px;
-  padding: 50px;
+  padding: clamp(24px, 4vw, 44px);
   box-shadow: 0 25px 60px rgba(226, 135, 130, 0.12);
   position: relative;
   z-index: 2;
@@ -686,7 +686,7 @@ footer .logo {
   height: 8px;
   background: rgba(226, 135, 130, 0.12);
   border-radius: 10px;
-  margin-bottom: 45px;
+  margin-bottom: 30px;
   overflow: hidden;
 }
 
@@ -732,15 +732,15 @@ footer .logo {
   line-height: 1.35;
   color: var(--text);
   text-align: center;
-  margin-bottom: 35px;
+  margin-bottom: 24px;
   font-style: italic;
 }
 
 .options-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 40px;
+  gap: 14px;
+  margin-bottom: 26px;
 }
 
 .option-label {
@@ -748,7 +748,7 @@ footer .logo {
   align-items: center;
   border: 1.5px solid var(--border);
   border-radius: 20px;
-  padding: 20px 26px;
+  padding: 18px 24px;
   cursor: pointer;
   transition: var(--transition);
   font-size: 1.1rem;
@@ -810,7 +810,7 @@ footer .logo {
   text-align: center;
   font-size: 0.95rem;
   color: var(--text-muted);
-  margin-bottom: 35px;
+  margin-bottom: 24px;
   font-style: italic;
   font-weight: 500;
   min-height: 25px;
@@ -822,7 +822,7 @@ footer .logo {
   justify-content: space-between;
   gap: 20px;
   border-top: 1px solid var(--border);
-  padding-top: 35px;
+  padding-top: 24px;
 }
 
 .wiz-btn {
@@ -1164,3 +1164,54 @@ input[type="text"]:focus {
   font-weight: 700;
   text-decoration: underline;
 }
+
+@media (max-height: 820px) and (min-width: 700px) {
+  .brand-logo {
+    font-size: 2.25rem;
+  }
+
+  .wizard-card {
+    max-width: 720px;
+  }
+
+  .maternal-accent {
+    margin-bottom: 8px;
+  }
+
+  .q-number {
+    margin-bottom: 10px;
+  }
+
+  .q-text {
+    font-size: 1.65rem;
+    margin-bottom: 24px;
+  }
+
+  .option-label {
+    padding: 15px 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .brand-logo {
+    font-size: 2rem;
+  }
+
+  .wizard-card {
+    border-radius: 24px;
+  }
+
+  .q-text {
+    font-size: 1.45rem;
+  }
+
+  .wizard-buttons {
+    flex-direction: column-reverse;
+  }
+
+  .wiz-btn {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
