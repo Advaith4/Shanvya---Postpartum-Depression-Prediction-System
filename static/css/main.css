@@ -679,6 +679,9 @@ footer .logo {
   box-shadow: 0 25px 60px rgba(226, 135, 130, 0.12);
   position: relative;
   z-index: 2;
+  max-height: calc(100dvh - 112px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .progress-bar-container {
@@ -823,6 +826,10 @@ footer .logo {
   gap: 20px;
   border-top: 1px solid var(--border);
   padding-top: 24px;
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.86), #ffffff 35%);
 }
 
 .wiz-btn {
@@ -1172,6 +1179,7 @@ input[type="text"]:focus {
 
   .wizard-card {
     max-width: 720px;
+    max-height: calc(100dvh - 96px);
   }
 
   .maternal-accent {
@@ -1199,6 +1207,7 @@ input[type="text"]:focus {
 
   .wizard-card {
     border-radius: 24px;
+    max-height: calc(100dvh - 48px);
   }
 
   .q-text {

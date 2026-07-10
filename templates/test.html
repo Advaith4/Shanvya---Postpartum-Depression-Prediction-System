@@ -13,23 +13,28 @@
       --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    html {
+      min-height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
     body {
       background: linear-gradient(-45deg, #FFC6C2, #FFE4D3, #CBEFE2, #E8F5D5);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
       color: var(--text);
       font-family: 'Outfit', sans-serif;
-      min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 28px 20px 48px;
+      padding: 24px 20px;
       position: relative;
       overflow-x: hidden;
-      overflow-y: auto;
+      overflow-y: auto !important;
     }
-
     @keyframes gradientBG {
       0% {background-position: 0% 50%;}
       50% {background-position: 100% 50%;}
