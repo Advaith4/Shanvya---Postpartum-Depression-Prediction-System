@@ -1,0 +1,104 @@
+{
+  "source_dataset": "data\\post_data_without_timestamp.csv",
+  "catboost_ready_dataset": "data\\ppd_epds_catboost_ready.csv",
+  "rows_before": 1503,
+  "rows_after_column_selection": 1503,
+  "rows_after_duplicate_removal": 326,
+  "duplicate_rows_removed": 1177,
+  "duplicate_rows_before_processing": 1177,
+  "missing_values_before_imputation": {
+    "Age": 0,
+    "Feeling sad or Tearful": 0,
+    "Irritable towards baby & partner": 6,
+    "Trouble sleeping at night": 0,
+    "Problems concentrating or making decision": 12,
+    "Overeating or loss of appetite": 0,
+    "Feeling anxious": 0,
+    "Feeling of guilt": 9,
+    "Problems of bonding with baby": 0,
+    "Suicide attempt": 0
+  },
+  "imputation_values": {
+    "Irritable towards baby & partner": "Yes",
+    "Problems concentrating or making decision": "No",
+    "Feeling of guilt": "No"
+  },
+  "epds_note": "The source data is not the exact Edinburgh Postnatal Depression Scale. This processed dataset uses an EPDS-style proxy score from available postpartum distress symptoms and rescales it to 0-30.",
+  "epds_proxy_features": [
+    "sad_tearful_score",
+    "sleep_score",
+    "concentration_score",
+    "anxiety_score",
+    "guilt_score",
+    "bonding_score",
+    "irritable_score",
+    "self_harm_score"
+  ],
+  "target_definition": {
+    "ppd_risk_label": "1 when epds_proxy_score_0_30 >= 13 or self-harm response is Yes; otherwise 0",
+    "risk_levels": {
+      "Low": "0-9",
+      "Moderate": "10-12",
+      "High": "13-30"
+    }
+  },
+  "target_distribution": {
+    "0": 67,
+    "1": 259
+  },
+  "catboost_categorical_features": [
+    "Age",
+    "Feeling sad or Tearful",
+    "Irritable towards baby & partner",
+    "Trouble sleeping at night",
+    "Problems concentrating or making decision",
+    "Overeating or loss of appetite",
+    "Feeling anxious",
+    "Feeling of guilt",
+    "Problems of bonding with baby",
+    "Suicide attempt"
+  ],
+  "catboost_target": "ppd_risk_label",
+  "excluded_from_catboost_dataset_to_reduce_leakage": [
+    "age_midpoint",
+    "sad_tearful_score",
+    "sleep_score",
+    "concentration_score",
+    "anxiety_score",
+    "guilt_score",
+    "bonding_score",
+    "irritable_score",
+    "self_harm_score",
+    "epds_proxy_raw_score_0_24",
+    "epds_proxy_score_0_30",
+    "needs_immediate_attention",
+    "epds_proxy_risk_level"
+  ],
+  "risk_level_distribution": {
+    "High": 247,
+    "Moderate": 61,
+    "Low": 18
+  },
+  "score_summary": {
+    "epds_proxy_raw_score_0_24": {
+      "count": 326.0,
+      "mean": 12.83,
+      "std": 3.37,
+      "min": 3.0,
+      "25%": 11.0,
+      "50%": 13.0,
+      "75%": 15.0,
+      "max": 22.0
+    },
+    "epds_proxy_score_0_30": {
+      "count": 326.0,
+      "mean": 16.03,
+      "std": 4.23,
+      "min": 4.0,
+      "25%": 14.0,
+      "50%": 16.0,
+      "75%": 19.0,
+      "max": 28.0
+    }
+  }
+}

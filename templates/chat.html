@@ -62,12 +62,20 @@
     </div>
     
     <div id="chatbox">
+      {% if chat_history %}
+      {% for item in chat_history %}
+      <div class="message {% if item.role == 'user' %}user{% else %}bot{% endif %}">
+        <div class="bubble">{{ item.content }}</div>
+      </div>
+      {% endfor %}
+      {% else %}
       <!-- Welcome message -->
       <div class="message bot">
         <div class="bubble">
           Hello, dear mother. Welcome to this quiet, safe space. I am Shanvya, your gentle companion here to listen, support, and stand by you. Please feel free to share anything on your mind. How are you feeling today?
         </div>
       </div>
+      {% endif %}
     </div>
     
     <div class="input-area">
@@ -97,15 +105,20 @@
 
       addTyping();
 
-      const res = await fetch("/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message })
-      });
+      try {
+        const res = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message })
+        });
 
-      const data = await res.json();
-      removeTyping();
-      addMessage("bot", data.response);
+        const data = await res.json();
+        removeTyping();
+        addMessage("bot", data.response || "I'm here, but I had trouble forming a response. Please try again.");
+      } catch (error) {
+        removeTyping();
+        addMessage("bot", "I'm sorry, the chat connection had a problem. Please try again in a moment.");
+      }
     }
 
     function addMessage(type, text) {

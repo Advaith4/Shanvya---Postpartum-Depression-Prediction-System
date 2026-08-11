@@ -916,6 +916,135 @@ footer .logo {
   margin-right: auto;
 }
 
+.model-dashboard {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto 32px;
+  text-align: left;
+}
+
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.score-tile {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  box-shadow: 0 8px 22px rgba(226, 135, 130, 0.06);
+}
+
+.score-label {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.score-tile strong {
+  display: block;
+  color: var(--text);
+  font-size: 1.35rem;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.score-tile span:last-child {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.confidence-meter {
+  height: 10px;
+  background: rgba(226, 135, 130, 0.14);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 4px 0 12px;
+}
+
+.confidence-meter span {
+  display: block;
+  height: 100%;
+  min-width: 4px;
+  background: linear-gradient(90deg, #5fbf9a, var(--primary));
+  border-radius: inherit;
+}
+
+.model-note {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 10px 0 18px;
+}
+
+.model-details,
+.local-explanation {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 18px auto 28px;
+  max-width: 560px;
+  text-align: left;
+}
+
+.model-details summary {
+  cursor: pointer;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.model-details p {
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 12px;
+}
+
+.local-explanation {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.explanation-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(226, 135, 130, 0.16);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.explanation-row span {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.explanation-row strong {
+  color: var(--primary);
+}
+
+.explanation-row small {
+  grid-column: 1 / -1;
+  color: var(--text-muted);
+}
+
+.local-explanation h3 {
+  color: var(--text);
+  font-size: 1.25rem;
+  margin-bottom: 4px;
+}
+
 .result-action {
   display: inline-flex;
   align-items: center;
@@ -1221,6 +1350,10 @@ input[type="text"]:focus {
   .wiz-btn {
     justify-content: center;
     width: 100%;
+  }
+
+  .score-grid {
+    grid-template-columns: 1fr;
   }
 }
 

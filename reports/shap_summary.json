@@ -1,0 +1,169 @@
+{
+  "explanation_method": "SHAP LinearExplainer on trained Logistic Regression pipeline output",
+  "runtime_usage": "offline_report_only",
+  "model_artifact": "models\\ppd_logistic_regression.joblib",
+  "dataset": "data\\ppd_epds_catboost_ready.csv",
+  "rows_explained": 326,
+  "features": [
+    "Age",
+    "Feeling sad or Tearful",
+    "Irritable towards baby & partner",
+    "Trouble sleeping at night",
+    "Problems concentrating or making decision",
+    "Overeating or loss of appetite",
+    "Feeling anxious",
+    "Feeling of guilt",
+    "Problems of bonding with baby",
+    "Suicide attempt"
+  ],
+  "target": "ppd_risk_label",
+  "class_distribution": {
+    "0": 67,
+    "1": 259
+  },
+  "top_survey_features": [
+    {
+      "source_feature": "Suicide attempt",
+      "mean_abs_shap": 2.8168083841236524,
+      "mean_shap": -0.3753485206225381
+    },
+    {
+      "source_feature": "Feeling sad or Tearful",
+      "mean_abs_shap": 1.758197405864378,
+      "mean_shap": -0.06574943994255145
+    },
+    {
+      "source_feature": "Feeling anxious",
+      "mean_abs_shap": 1.5114466349442703,
+      "mean_shap": 0.12172724576732419
+    },
+    {
+      "source_feature": "Problems of bonding with baby",
+      "mean_abs_shap": 1.4758554106403208,
+      "mean_shap": 0.1361822401570577
+    },
+    {
+      "source_feature": "Irritable towards baby & partner",
+      "mean_abs_shap": 1.3821375203171624,
+      "mean_shap": 0.04413026625133209
+    },
+    {
+      "source_feature": "Feeling of guilt",
+      "mean_abs_shap": 1.3076098743034543,
+      "mean_shap": -0.14369472414132486
+    },
+    {
+      "source_feature": "Problems concentrating or making decision",
+      "mean_abs_shap": 1.032770771407044,
+      "mean_shap": 0.006890713148517202
+    },
+    {
+      "source_feature": "Trouble sleeping at night",
+      "mean_abs_shap": 0.8022077884328912,
+      "mean_shap": 0.05264495000763693
+    },
+    {
+      "source_feature": "Age",
+      "mean_abs_shap": 0.4635526733327353,
+      "mean_shap": 0.04010245406084928
+    },
+    {
+      "source_feature": "Overeating or loss of appetite",
+      "mean_abs_shap": 0.36388932633317106,
+      "mean_shap": -0.0437170082722911
+    }
+  ],
+  "top_encoded_response_features": [
+    {
+      "encoded_feature": "categorical__Suicide attempt_Yes",
+      "source_feature": "Suicide attempt",
+      "response_value": "Yes",
+      "mean_abs_shap": 1.609584167879839,
+      "mean_shap": -0.2702400647621472,
+      "model_coefficient": 3.3320068499417625,
+      "coefficient_direction": "pushes_toward_elevated_support_signal"
+    },
+    {
+      "encoded_feature": "categorical__Suicide attempt_No",
+      "source_feature": "Suicide attempt",
+      "response_value": "No",
+      "mean_abs_shap": 0.9497811032174279,
+      "mean_shap": -0.06975931944374827,
+      "model_coefficient": -1.9983776923253,
+      "coefficient_direction": "pushes_toward_lower_support_signal"
+    },
+    {
+      "encoded_feature": "categorical__Feeling anxious_Yes",
+      "source_feature": "Feeling anxious",
+      "response_value": "Yes",
+      "mean_abs_shap": 0.8960187460249068,
+      "mean_shap": 0.07216258357247585,
+      "model_coefficient": 1.815200790480487,
+      "coefficient_direction": "pushes_toward_elevated_support_signal"
+    },
+    {
+      "encoded_feature": "categorical__Feeling sad or Tearful_Yes",
+      "source_feature": "Feeling sad or Tearful",
+      "response_value": "Yes",
+      "mean_abs_shap": 0.8952910796708287,
+      "mean_shap": -0.06325426106369976,
+      "model_coefficient": 1.8444444639325643,
+      "coefficient_direction": "pushes_toward_elevated_support_signal"
+    },
+    {
+      "encoded_feature": "categorical__Irritable towards baby & partner_Yes",
+      "source_feature": "Irritable towards baby & partner",
+      "response_value": "Yes",
+      "mean_abs_shap": 0.7906527537247431,
+      "mean_shap": 0.024212175140462026,
+      "model_coefficient": 1.7011140292652136,
+      "coefficient_direction": "pushes_toward_elevated_support_signal"
+    },
+    {
+      "encoded_feature": "categorical__Feeling sad or Tearful_No",
+      "source_feature": "Feeling sad or Tearful",
+      "response_value": "No",
+      "mean_abs_shap": 0.7270191983123573,
+      "mean_shap": -0.012135373568188007,
+      "model_coefficient": -1.6347651996815213,
+      "coefficient_direction": "pushes_toward_lower_support_signal"
+    },
+    {
+      "encoded_feature": "categorical__Problems of bonding with baby_No",
+      "source_feature": "Problems of bonding with baby",
+      "response_value": "No",
+      "mean_abs_shap": 0.6389666208741431,
+      "mean_shap": 0.07669967246331988,
+      "model_coefficient": -1.3783954367719078,
+      "coefficient_direction": "pushes_toward_lower_support_signal"
+    },
+    {
+      "encoded_feature": "categorical__Feeling anxious_No",
+      "source_feature": "Feeling anxious",
+      "response_value": "No",
+      "mean_abs_shap": 0.6154278889193634,
+      "mean_shap": 0.04956466219484834,
+      "model_coefficient": -1.246765422493869,
+      "coefficient_direction": "pushes_toward_lower_support_signal"
+    },
+    {
+      "encoded_feature": "categorical__Irritable towards baby & partner_No",
+      "source_feature": "Irritable towards baby & partner",
+      "response_value": "No",
+      "mean_abs_shap": 0.5690942671524023,
+      "mean_shap": 0.019775476464755304,
+      "model_coefficient": -1.19385283842782,
+      "coefficient_direction": "pushes_toward_lower_support_signal"
+    },
+    {
+      "encoded_feature": "categorical__Feeling of guilt_Yes",
+      "source_feature": "Feeling of guilt",
+      "response_value": "Yes",
+      "mean_abs_shap": 0.5594566656687701,
+      "mean_shap": -0.1018080589127695,
+      "model_coefficient": 1.22289709674145,
+      "coefficient_direction": "pushes_toward_elevated_support_signal"
+    }
+  ],
+  "safety_note": "SHAP values explain model behavior for an EPDS-proxy screening-support prototype. They are not clinical causes or diagnostic evidence."
+}

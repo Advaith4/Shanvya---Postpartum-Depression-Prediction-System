@@ -1,0 +1,32 @@
+encoded_feature,source_feature,response_value,mean_abs_shap,mean_shap,model_coefficient,coefficient_direction
+categorical__Suicide attempt_Yes,Suicide attempt,Yes,1.609584167879839,-0.2702400647621472,3.3320068499417625,pushes_toward_elevated_support_signal
+categorical__Suicide attempt_No,Suicide attempt,No,0.9497811032174279,-0.06975931944374827,-1.9983776923253,pushes_toward_lower_support_signal
+categorical__Feeling anxious_Yes,Feeling anxious,Yes,0.8960187460249068,0.07216258357247585,1.815200790480487,pushes_toward_elevated_support_signal
+categorical__Feeling sad or Tearful_Yes,Feeling sad or Tearful,Yes,0.8952910796708287,-0.06325426106369976,1.8444444639325643,pushes_toward_elevated_support_signal
+categorical__Irritable towards baby & partner_Yes,Irritable towards baby & partner,Yes,0.7906527537247431,0.024212175140462026,1.7011140292652136,pushes_toward_elevated_support_signal
+categorical__Feeling sad or Tearful_No,Feeling sad or Tearful,No,0.7270191983123573,-0.012135373568188007,-1.6347651996815213,pushes_toward_lower_support_signal
+categorical__Problems of bonding with baby_No,Problems of bonding with baby,No,0.6389666208741431,0.07669967246331988,-1.3783954367719078,pushes_toward_lower_support_signal
+categorical__Feeling anxious_No,Feeling anxious,No,0.6154278889193634,0.04956466219484834,-1.246765422493869,pushes_toward_lower_support_signal
+categorical__Irritable towards baby & partner_No,Irritable towards baby & partner,No,0.5690942671524023,0.019775476464755304,-1.19385283842782,pushes_toward_lower_support_signal
+categorical__Feeling of guilt_Yes,Feeling of guilt,Yes,0.5594566656687701,-0.1018080589127695,1.22289709674145,pushes_toward_elevated_support_signal
+categorical__Feeling of guilt_No,Feeling of guilt,No,0.5350109093876839,-0.058667551303230904,-1.1647759881153017,pushes_toward_lower_support_signal
+categorical__Problems of bonding with baby_Yes,Problems of bonding with baby,Yes,0.4759943005365888,0.04931377146510684,1.1499491772263808,pushes_toward_elevated_support_signal
+categorical__Problems concentrating or making decision_Often,Problems concentrating or making decision,Often,0.4737698057193908,0.014736717980682617,1.2777048036442913,pushes_toward_elevated_support_signal
+categorical__Problems concentrating or making decision_No,Problems concentrating or making decision,No,0.44461234266223715,-0.004027602946526762,-0.9514482322954539,pushes_toward_lower_support_signal
+categorical__Trouble sleeping at night_Two or more days a week,Trouble sleeping at night,Two or more days a week,0.3954886547867101,0.06005610869589774,0.9331883429391163,pushes_toward_elevated_support_signal
+categorical__Problems of bonding with baby_Sometimes,Problems of bonding with baby,Sometimes,0.3608944892295888,0.010168796228631002,0.7968816275321436,pushes_toward_elevated_support_signal
+categorical__Trouble sleeping at night_No,Trouble sleeping at night,No,0.2695190299170323,0.007564049584082173,-0.6489158327396803,pushes_toward_lower_support_signal
+categorical__Overeating or loss of appetite_Yes,Overeating or loss of appetite,Yes,0.26068761083806846,-0.035139116434788946,0.6165420859925281,pushes_toward_elevated_support_signal
+categorical__Suicide attempt_Not interested to say,Suicide attempt,Not interested to say,0.25744311302638556,-0.035349136416642654,-0.7651937896298475,pushes_toward_lower_support_signal
+categorical__Feeling of guilt_Maybe,Feeling of guilt,Maybe,0.21314229924700034,0.01678088607467555,0.5103142593604709,pushes_toward_elevated_support_signal
+categorical__Age_30-35,Age,30-35,0.1391253040471251,0.023028576282041337,-0.37018322820243843,pushes_toward_lower_support_signal
+categorical__Trouble sleeping at night_Yes,Trouble sleeping at night,Yes,0.13720010372914884,-0.01497520827234298,0.2841628577871841,pushes_toward_elevated_support_signal
+categorical__Feeling sad or Tearful_Sometimes,Feeling sad or Tearful,Sometimes,0.13588712788119198,0.009640194689336325,0.3587561037355752,pushes_toward_elevated_support_signal
+categorical__Age_25-30,Age,25-30,0.11496271334770668,0.00477353827049305,0.46314686791092774,pushes_toward_elevated_support_signal
+categorical__Problems concentrating or making decision_Yes,Problems concentrating or making decision,Yes,0.11438862302541604,-0.003818401885638652,0.24217879663778208,pushes_toward_elevated_support_signal
+categorical__Age_35-40,Age,35-40,0.10882664661176852,-0.0020700720822890745,0.3012694191188555,pushes_toward_elevated_support_signal
+categorical__Age_45-50,Age,45-50,0.06797042452670325,0.014741766018164123,0.268781639928497,pushes_toward_elevated_support_signal
+categorical__Overeating or loss of appetite_No,Overeating or loss of appetite,No,0.06789703832410503,-0.008296645580750994,-0.13799522751657295,pushes_toward_lower_support_signal
+categorical__Overeating or loss of appetite_Not at all,Overeating or loss of appetite,Not at all,0.035304677170997556,-0.00028124625675116305,0.08988850951066289,pushes_toward_elevated_support_signal
+categorical__Age_40-45,Age,40-45,0.03266758479943176,-0.0003713544275601544,-0.09457933076922488,pushes_toward_lower_support_signal
+categorical__Irritable towards baby & partner_Sometimes,Irritable towards baby & partner,Sometimes,0.0223904994400171,0.00014261464611475632,0.06117417714922531,pushes_toward_elevated_support_signal

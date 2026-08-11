@@ -67,21 +67,88 @@
   </div>
 
   <div class="wizard-card">
-    {% if prediction %}
+    {% if error_message %}
+    <div class="result-container">
+      <div class="result-icon">
+        <i class="fa-solid fa-circle-exclamation"></i>
+      </div>
+      <h2 class="result-heading">Unable to Complete Screening</h2>
+      <p class="result-text">{{ error_message }}</p>
+      <a href="/test" class="result-action">Return to Assessment <i class="fa-solid fa-rotate-left"></i></a>
+    </div>
+    {% elif prediction %}
     <!-- Prediction Screen -->
     <div class="result-container">
       <div class="result-icon">
         <i class="fa-solid fa-heart"></i>
       </div>
       <h2 class="result-heading">Assessment Completed</h2>
+      <p class="result-text"><strong>{{ prediction }}</strong></p>
+      <p class="result-text">EPDS-proxy score: <strong>{{ epds_score }}/30</strong></p>
+
+      <section class="model-dashboard" aria-label="Model reliability details">
+        <div class="score-grid">
+          <div class="score-tile">
+            <span class="score-label">Machine-learning support signal</span>
+            <strong>{{ ml_support_signal }}</strong>
+            <span>{{ support_band }}</span>
+          </div>
+          <div class="score-tile">
+            <span class="score-label">ML support score</span>
+            <strong>{{ probability }}%</strong>
+            <span>Decision threshold: {{ decision_threshold }}%</span>
+          </div>
+          <div class="score-tile">
+            <span class="score-label">Confidence score</span>
+            <strong>{{ model_confidence }}%</strong>
+            <span>{{ confidence_label }}</span>
+          </div>
+        </div>
+
+        <div class="confidence-meter" aria-hidden="true">
+          <span style="width: {{ model_confidence }}%;"></span>
+        </div>
+
+        <p class="model-note">The ML support score and confidence score describe the model output only. They are not a clinical probability or diagnosis.</p>
+      </section>
       
-      {% if 'Positive' in prediction %}
-      <p class="result-text">Our prediction model suggests a high chance that you are experiencing postpartum distress. This is completely normal and treatable. We have arranged a private counseling space for you right now.</p>
+      {% if 'Immediate' in prediction %}
+      <p class="result-text"><strong>Immediate attention recommended.</strong> A response indicating self-harm or suicide-related thoughts requires prompt attention from a qualified healthcare professional.</p>
+      <p class="result-text">Please seek appropriate professional or emergency support in your area.</p>
+      <a href="/chat" class="result-action">Speak with our Counselor <i class="fa-solid fa-comments"></i></a>
+      {% elif 'High' in prediction %}
+      <p class="result-text">Your responses fall in the higher postpartum distress risk range. This is a screening-support result, and further professional assessment is recommended.</p>
+      <a href="/chat" class="result-action">Speak with our Counselor <i class="fa-solid fa-comments"></i></a>
+      {% elif 'Moderate' in prediction %}
+      <p class="result-text">Your responses fall in the moderate postpartum distress risk range. This is a gentle signal to monitor your wellbeing, rest when possible, and seek support if these feelings continue or grow heavier.</p>
       <a href="/chat" class="result-action">Speak with our Counselor <i class="fa-solid fa-comments"></i></a>
       {% else %}
-      <p class="result-text">Your responses indicate a lower likelihood of clinical postpartum depression at this time. However, remember to always prioritize self-care and reach out if you feel overwhelmed.</p>
+      <p class="result-text">Your responses fall in the lower postpartum distress risk range at this time. Please continue prioritizing self-care and reach out if anything starts to feel overwhelming.</p>
       <a href="/" class="result-action">Back to Home <i class="fa-solid fa-home"></i></a>
       {% endif %}
+
+      {% if concern_areas %}
+      <p class="result-text">Main concern areas from the EPDS-proxy screen: {{ concern_areas|join(', ') }}.</p>
+      {% endif %}
+
+      {% if explanation_items %}
+      <div class="local-explanation">
+      <h3>{{ explanation_heading }}</h3>
+      <p class="model-note"><strong>Responses contributing to the ML support signal:</strong></p>
+      {% for item in explanation_items %}
+      <div class="explanation-row">
+        <span>{{ item.feature }}</span>
+        <strong>{{ item.response }}</strong>
+        <small>
+          {% if item.direction == 'increases_support_signal' %}This response raised the support signal.{% else %}This response lowered the support signal.{% endif %}
+        </small>
+      </div>
+      {% endfor %}
+      <p class="model-note">This explains how the model used your answers. It does not describe medical causes.</p>
+      </div>
+      {% endif %}
+
+      <p class="result-text">This tool is a screening-support prototype and is not a medical diagnostic tool. The ML model reproduces an EPDS-proxy labeling rule and has not been clinically validated. Results should not be used as a diagnosis or as a substitute for professional assessment.</p>
     </div>
     {% else %}
     <!-- Wizard Form -->
@@ -91,31 +158,20 @@
     
     <form id="wizardForm" action="/test" method="post">
       {% for q in questions %}
+      {% set question_index = loop.index0 %}
       <div class="question-card" id="qCard-{{ loop.index0 }}">
         <div class="maternal-accent"><i class="fa-solid fa-seedling"></i></div>
-        <div class="q-number">Step {{ loop.index }} of 9</div>
-        <div class="q-text">{{ q }}</div>
+        <div class="q-number">Step {{ loop.index }} of {{ questions|length }}</div>
+        <div class="q-text">{{ q.text }}</div>
         
         <div class="options-container">
+          {% for option in q.options %}
           <label class="option-label" onclick="selectOption(this)">
-            <input type="radio" name="q-{{ loop.index0 }}" value="Yes" required>
+            <input type="radio" name="q-{{ question_index }}" value="{{ option }}" required>
             <span class="custom-radio"></span>
-            <span>Yes, most of the time</span>
+            <span>{{ option }}</span>
           </label>
-          
-          <label class="option-label" onclick="selectOption(this)">
-            <input type="radio" name="q-{{ loop.index0 }}" value="No">
-            <span class="custom-radio"></span>
-            <span>No, not at all</span>
-          </label>
-          
-          {% if 'Maybe' in q or 'Sometimes' in q %}
-          <label class="option-label" onclick="selectOption(this)">
-            <input type="radio" name="q-{{ loop.index0 }}" value="Maybe">
-            <span class="custom-radio"></span>
-            <span>Sometimes / Maybe</span>
-          </label>
-          {% endif %}
+          {% endfor %}
         </div>
       </div>
       {% endfor %}
@@ -134,7 +190,7 @@
 {% block scripts %}
   <script>
     let currentStep = 0;
-    const totalSteps = 9;
+    const totalSteps = {{ questions|length }};
     
     const subtitles = [
       "Take a soft, quiet breath. You are doing wonderfully, dear.",
@@ -145,7 +201,8 @@
       "We are moving forward together, step by gentle step.",
       "This quiet moment for yourself is a beautiful gift of love.",
       "Almost there, sweet mother. You are doing so, so well.",
-      "Thank you for sharing your heart. Let us evaluate your wellness now."
+      "Thank you for sharing your heart. Let us evaluate your wellness now.",
+      "Your care matters too. Thank you for completing this check-in."
     ];
     
     function showStep(stepIndex) {

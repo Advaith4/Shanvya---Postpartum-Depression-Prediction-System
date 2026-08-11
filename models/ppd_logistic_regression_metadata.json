@@ -1,0 +1,52 @@
+{
+  "model_name": "logistic_regression",
+  "model_version": "1.0.0",
+  "artifact_path": "models\\ppd_logistic_regression.joblib",
+  "training_dataset": "data\\ppd_epds_catboost_ready.csv",
+  "training_rows": 326,
+  "features": [
+    "Age",
+    "Feeling sad or Tearful",
+    "Irritable towards baby & partner",
+    "Trouble sleeping at night",
+    "Problems concentrating or making decision",
+    "Overeating or loss of appetite",
+    "Feeling anxious",
+    "Feeling of guilt",
+    "Problems of bonding with baby",
+    "Suicide attempt"
+  ],
+  "target": "ppd_risk_label",
+  "class_distribution": {
+    "0": 67,
+    "1": 259
+  },
+  "class_balance_strategy": "LogisticRegression(class_weight='balanced')",
+  "preprocessing": "sklearn Pipeline with ColumnTransformer and OneHotEncoder(handle_unknown='ignore')",
+  "threshold": 0.35,
+  "threshold_rationale": "Production threshold is 0.35, based on the mean of leakage-safe nested CV thresholds 0.43, 0.33, 0.29, 0.38, 0.33 rounded to two decimals. It was not selected on the holdout test set.",
+  "validation_method": "5-fold Stratified Cross-Validation with nested threshold selection",
+  "validation_metrics": {
+    "validation_method": "5-fold Stratified Cross-Validation with nested threshold selection",
+    "f1": {
+      "mean": 0.9709,
+      "std": 0.0004
+    },
+    "roc_auc": {
+      "mean": 0.9928,
+      "std": 0.0076
+    },
+    "mcc": {
+      "mean": 0.8632,
+      "std": 0.0105
+    }
+  },
+  "known_limitations": [
+    "Metrics measure consistency with the project's EPDS-proxy labeling rule, not clinical diagnostic accuracy.",
+    "Target is derived from EPDS-style survey responses.",
+    "No clinician-confirmed diagnostic labels are available.",
+    "No external validation dataset is available.",
+    "Dataset contains 326 final rows with class imbalance."
+  ],
+  "intended_use": "Secondary ML support signal for an EPDS-proxy postpartum distress screening-support prototype."
+}
