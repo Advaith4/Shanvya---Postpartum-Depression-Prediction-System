@@ -43,10 +43,16 @@ def test_output_guardrail_blocks_medication_advice():
 
 
 def test_output_guardrail_blocks_non_urgent_hotlines():
-    result = validate_bot_response("You can call a postpartum support hotline for this.", ROUTINE_RISK)
+    result = validate_bot_response("You can call Postpartum Support International for this.", ROUTINE_RISK)
 
     assert not result.allowed
     assert result.reason == "non_urgent_hotline"
+
+
+def test_output_guardrail_allows_generic_support_line_language():
+    result = validate_bot_response("A doctor, counselor, or support line can help you talk this through.", ELEVATED_RISK)
+
+    assert result.allowed
 
 
 def test_output_guardrail_allows_crisis_message_for_urgent_risk():

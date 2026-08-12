@@ -275,7 +275,13 @@ def test():
 
 @app.route("/chat", methods=["GET"])
 def chat():
-    return render_template("chat.html", chat_history=session.get("chat_history", []))
+    session.pop("chat_history", None)
+    return render_template("chat.html")
+
+@app.route("/chat/reset", methods=["POST"])
+def reset_chat():
+    session.pop("chat_history", None)
+    return jsonify({"status": "reset"})
 
 @app.route("/chat", methods=["POST"])
 def chat_response():

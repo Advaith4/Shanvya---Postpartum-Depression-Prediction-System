@@ -75,9 +75,8 @@ FORBIDDEN_MEDICAL_ADVICE_PATTERNS = (
 
 NON_URGENT_HOTLINE_PATTERNS = (
     r"\bpostpartum support international\b",
-    r"\bwarmline\b",
-    r"\bhelpline\b",
-    r"\bhotline\b",
+    r"\baasra\b",
+    r"\bsneha\b",
     r"\b\d{2,}[-\s]\d{2,}[-\s]\d{4,}\b",
 )
 

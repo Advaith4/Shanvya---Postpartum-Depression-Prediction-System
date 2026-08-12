@@ -54,6 +54,9 @@
         <h3 class="brand-font">Shanvya Counsel</h3>
         <p>Warm Care Companion</p>
       </div>
+      <button class="voice-btn" type="button" onclick="resetChat()" title="Start a new chat" aria-label="Start a new chat">
+        <i class="fa-solid fa-rotate-left"></i>
+      </button>
     </div>
     
     <div class="crisis-card">
@@ -62,20 +65,12 @@
     </div>
     
     <div id="chatbox">
-      {% if chat_history %}
-      {% for item in chat_history %}
-      <div class="message {% if item.role == 'user' %}user{% else %}bot{% endif %}">
-        <div class="bubble">{{ item.content }}</div>
-      </div>
-      {% endfor %}
-      {% else %}
       <!-- Welcome message -->
       <div class="message bot">
         <div class="bubble">
           Hello, dear mother. Welcome to this quiet, safe space. I am Shanvya, your gentle companion here to listen, support, and stand by you. Please feel free to share anything on your mind. How are you feeling today?
         </div>
       </div>
-      {% endif %}
     </div>
     
     <div class="input-area">
@@ -83,7 +78,7 @@
         <input type="text" id="userInput" placeholder="Share your thoughts softly here..." onkeypress="handleKeyPress(event)">
       </div>
       <button class="voice-btn" id="voiceButton" onclick="startVoiceInput()"><i class="fa-solid fa-microphone"></i></button>
-      <button class="send-btn" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+      <button class="send-btn" id="sendButton" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
     </div>
   </div>
 {% endblock %}
@@ -97,11 +92,14 @@
     
     async function sendMessage() {
       const input = document.getElementById("userInput");
+      const sendButton = document.getElementById("sendButton");
       const message = input.value;
       if (!message.trim()) return;
 
       addMessage("user", message);
       input.value = "";
+      input.disabled = true;
+      sendButton.disabled = true;
 
       addTyping();
 
@@ -118,7 +116,24 @@
       } catch (error) {
         removeTyping();
         addMessage("bot", "I'm sorry, the chat connection had a problem. Please try again in a moment.");
+      } finally {
+        input.disabled = false;
+        sendButton.disabled = false;
+        input.focus();
       }
+    }
+
+    async function resetChat() {
+      try {
+        await fetch("/chat/reset", { method: "POST" });
+      } catch (error) {
+        // The UI can still reset locally even if the network reset fails.
+      }
+
+      const chatbox = document.getElementById("chatbox");
+      chatbox.innerHTML = "";
+      addMessage("bot", "Hello, dear mother. Welcome to this quiet, safe space. I am Shanvya, your gentle companion here to listen, support, and stand by you. Please feel free to share anything on your mind. How are you feeling today?");
+      document.getElementById("userInput").focus();
     }
 
     function addMessage(type, text) {

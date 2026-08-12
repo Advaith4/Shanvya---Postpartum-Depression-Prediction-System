@@ -134,7 +134,7 @@ def test_result_ui_avoids_forbidden_clinical_claims():
     assert all(phrase not in html for phrase in forbidden)
 
 
-def test_chat_page_renders_saved_session_history():
+def test_chat_page_starts_fresh_and_clears_saved_history():
     client = app.test_client()
     with client.session_transaction() as sess:
         sess["chat_history"] = [
@@ -146,8 +146,11 @@ def test_chat_page_renders_saved_session_history():
     html = response.get_data(as_text=True)
 
     assert response.status_code == 200
-    assert "I am anxious" in html
-    assert "That anxious feeling can be frightening." in html
+    assert "I am anxious" not in html
+    assert "That anxious feeling can be frightening." not in html
+    assert "How are you feeling today?" in html
+    with client.session_transaction() as sess:
+        assert "chat_history" not in sess
 
 
 def test_chat_route_applies_urgent_input_guardrail():
@@ -158,3 +161,30 @@ def test_chat_route_applies_urgent_input_guardrail():
     assert response.status_code == 200
     assert data["guardrail"] == "urgent_user_language"
     assert "immediate human support" in data["response"]
+
+
+def test_chat_reset_route_clears_saved_history():
+    client = app.test_client()
+    with client.session_transaction() as sess:
+        sess["chat_history"] = [
+            {"role": "user", "content": "old message"},
+            {"role": "assistant", "content": "old reply"},
+        ]
+
+    response = client.post("/chat/reset")
+    data = response.get_json()
+
+    assert response.status_code == 200
+    assert data["status"] == "reset"
+    with client.session_transaction() as sess:
+        assert "chat_history" not in sess
+
+
+def test_chat_page_has_new_chat_control():
+    client = app.test_client()
+    response = client.get("/chat")
+    html = response.get_data(as_text=True)
+
+    assert response.status_code == 200
+    assert "resetChat()" in html
+    assert "Start a new chat" in html

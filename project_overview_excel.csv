@@ -1,0 +1,9 @@
+Topic,Basic Overview
+What Your AI Does,"Postpartum distress screening support + chatbot for emotional support and safety triage."
+System Prompt,"Warm, non-diagnostic postpartum support companion; classify safety risk; no medication advice; escalate crisis."
+Dataset Created + Count,"Source rows: 1503; duplicates removed: 1177; final dataset: 326 rows; target from EPDS-style proxy score."
+Tools,"Flask, Python, scikit-learn, Logistic Regression, CrewAI, Groq, Hugging Face API, SHAP, pytest."
+Review + Accuracy,"Reviewed with 5-fold stratified cross-validation; F1: 0.9709; ROC-AUC: 0.9928; MCC: 0.8632."
+Performance,"Model is strong on proxy-label validation; not clinically validated; threshold: 0.35."
+Failure Cases,"Small dataset, class imbalance, no external clinical validation, chatbot/guardrail false positives or misses."
+Deployment,"Flask app; run with python app.py; local URL: http://localhost:5001."
